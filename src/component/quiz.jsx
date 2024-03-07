@@ -39,41 +39,50 @@ export default function Quiz() {
     const [score, setScore] = useState(0);
 
     const handleAnswerOptionClick = (isCorrect) => {
-        if( isCorrect ){
-            setScore( score + 1 )
+        if (isCorrect) {
+            setScore(score + 1)
         }
         const newQuestion = currentQuestion + 1;
-        if( newQuestion < questions.length ){
-            setCurrentQuestion( newQuestion )
-        }else{
+        if (newQuestion < questions.length) {
+            setCurrentQuestion(newQuestion)
+        } else {
             setShowScore(true)
         }
+    }
+
+    const handleReset = ( ) =>{
+        setShowScore(!showScore)
+        setCurrentQuestion(0)
+        setScore(0)
     }
 
     return (
         <div className='quiz-app'>
             {showScore ? (
-                <div className='score-section'>
-                    Your Score {score} out of {questions.length}
+                <div>
+                    <div className='score-section'>
+                        Your Score {score} out of {questions.length}
+                    </div>
+                    <button style={{marginTop:'20px'}} onClick={handleReset} >Restart</button>
                 </div>
             ) : (
                 <>
-                <div className='question-section'>
-                    <div className='question-count'>
-                        <span>Question {currentQuestion + 1} </span> / {questions.length}
-                    </div>
-                    <div className='question-text'>
-                        {questions[currentQuestion].question}
-                    </div>
-                    <div className='answer-section'>
-                        {questions[currentQuestion].answers.map((answerOption , index) => {
-                            return (
-                                <div key={index}>
-                                    <button onClick={() => handleAnswerOptionClick(answerOption.correct)}> {answerOption.text}</button>
-                                </div>)
-                            // console.log(answerOption.text)
-                        })}
-                    </div>
+                    <div className='question-section'>
+                        <div className='question-count'>
+                            <span>Question {currentQuestion + 1} </span> / {questions.length}
+                        </div>
+                        <div className='question-text'>
+                            {questions[currentQuestion].question}
+                        </div>
+                        <div className='answer-section'>
+                            {questions[currentQuestion].answers.map((answerOption, index) => {
+                                return (
+                                    <div key={index}>
+                                        <button onClick={() => handleAnswerOptionClick(answerOption.correct)}> {answerOption.text}</button>
+                                    </div>)
+                                // console.log(answerOption.text)
+                            })}
+                        </div>
                     </div>
                 </>
             )}
