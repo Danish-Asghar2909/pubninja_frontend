@@ -31,6 +31,24 @@ export default function Quiz() {
                 { text: "Berlin", correct: false },
             ],
         },
+        {
+            question: "What is the capital of France?",
+            answers: [
+                { text: "Paris", correct: true },
+                { text: "London", correct: false },
+                { text: "Madrid", correct: false },
+                { text: "Berlin", correct: false },
+            ],
+        },
+        {
+            question: "What is the capital of France?",
+            answers: [
+                { text: "Paris", correct: true },
+                { text: "London", correct: false },
+                { text: "Madrid", correct: false },
+                { text: "Berlin", correct: false },
+            ],
+        },
         // Add more questions as needed
     ];
 
@@ -50,7 +68,7 @@ export default function Quiz() {
         }
     }
 
-    const handleReset = ( ) =>{
+    const handleReset = () => {
         setShowScore(!showScore)
         setCurrentQuestion(0)
         setScore(0)
@@ -63,7 +81,7 @@ export default function Quiz() {
                     <div className='score-section'>
                         Your Score {score} out of {questions.length}
                     </div>
-                    <button style={{marginTop:'20px'}} onClick={handleReset} >Restart</button>
+                    <button style={{ marginTop: '20px' }} onClick={handleReset} >Restart</button>
                 </div>
             ) : (
                 <>
@@ -80,7 +98,6 @@ export default function Quiz() {
                                     <div key={index}>
                                         <button onClick={() => handleAnswerOptionClick(answerOption.correct)}> {answerOption.text}</button>
                                     </div>)
-                                // console.log(answerOption.text)
                             })}
                         </div>
                     </div>
